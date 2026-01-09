@@ -1,0 +1,495 @@
+:root {
+  --neon-blue: #00d4ff;
+  --neon-purple: #ff00ff;
+  --neon-pink: #ff0080;
+  --neon-magenta: #ff006f;
+  --neon-green: #0aff0a;
+  --neon-yellow: #ffff00;
+  --deep-purple: #1a0020;
+  --bg-color: #0a0010;
+  --glass: rgba(30, 0, 40, 0.7);
+  --border-color: rgba(255, 0, 255, 0.4);
+  --accent-cyan: #00d4ff;
+}
+
+body {
+  margin: 0;
+  background: var(--bg-color);
+  background-image: url('/main-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: white;
+  font-family: 'Rajdhani', sans-serif;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 0, 20, 0.7);
+  z-index: 0;
+  pointer-events: none;
+}
+
+#app {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* Background Animation */
+.hex-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255, 0, 255, 0.08) 0%, transparent 60%),
+    linear-gradient(0deg, rgba(20, 0, 30, 0.9), transparent),
+    repeating-linear-gradient(45deg, rgba(255, 0, 128, 0.05) 0px, rgba(255, 0, 128, 0.05) 1px, transparent 1px, transparent 40px),
+    repeating-linear-gradient(-45deg, rgba(0, 212, 255, 0.03) 0px, rgba(0, 212, 255, 0.03) 1px, transparent 1px, transparent 40px);
+  z-index: 0;
+  transform-origin: center;
+  opacity: 0.3;
+}
+
+.glow-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, transparent 0%, rgba(10, 0, 20, 0.8) 90%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Molecular Labels */
+.mole-label {
+  font-family: 'Rajdhani', sans-serif;
+  color: var(--accent-cyan);
+  background: rgba(20, 0, 30, 0.9);
+  border: 1px solid var(--accent-cyan);
+  padding: 4px 8px;
+  font-size: 0.8rem;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+  pointer-events: none;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+/* Logout Button */
+.btn-logout {
+  background: transparent;
+  border: 1px solid var(--neon-purple);
+  color: var(--neon-purple);
+  padding: 5px 15px;
+  font-family: 'Orbitron';
+  cursor: pointer;
+  transition: 0.3s;
+  margin-left: 1rem;
+  font-size: 0.8rem;
+}
+
+.btn-logout:hover {
+  background: var(--neon-purple);
+  color: black;
+  box-shadow: 0 0 15px var(--neon-purple);
+}
+
+/* Report Form */
+.report-form-container {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.report-input {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--border-color);
+  color: white;
+  padding: 8px;
+  font-family: 'Rajdhani';
+  outline: none;
+}
+
+.report-input:focus {
+  border-color: var(--neon-green);
+}
+
+.btn-submit {
+  background: linear-gradient(90deg, var(--deep-blue), var(--neon-green), var(--deep-blue));
+  border: none;
+  color: black;
+  font-weight: bold;
+  padding: 10px;
+  cursor: pointer;
+  font-family: 'Orbitron';
+  clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+  transition: 0.3s;
+}
+
+.btn-submit:hover {
+  filter: brightness(1.2);
+  box-shadow: 0 0 20px var(--neon-green);
+}
+
+/* Page 1: Doctor Login */
+.page-login {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  flex-direction: column;
+  background-image: url('S:\DRUG-DISCOVERY-SYSTEM\image.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.page-login::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 5, 15, 0.5);
+  z-index: -1;
+}
+
+.login-card {
+  background: rgba(20, 0, 30, 0.85);
+  backdrop-filter: blur(20px);
+  padding: 3rem 4rem;
+  border: 1px solid rgba(255, 0, 255, 0.5);
+  box-shadow: 0 0 80px rgba(255, 0, 128, 0.3), inset 0 0 30px rgba(255, 0, 255, 0.1);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
+  width: 450px;
+}
+
+/* Scifi HUD corners */
+.login-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-top: 2px solid var(--neon-purple);
+  border-left: 2px solid var(--neon-purple);
+}
+
+.login-card-corner-br {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  border-bottom: 2px solid var(--neon-purple);
+  border-right: 2px solid var(--neon-purple);
+}
+
+h1 {
+  font-family: 'Orbitron', sans-serif;
+  color: white;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 6px;
+  text-shadow: 0 0 20px var(--neon-purple), 0 0 40px var(--neon-pink);
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+h2 {
+  font-family: 'Rajdhani', sans-serif;
+  color: var(--neon-pink);
+  margin-top: 0;
+  margin-bottom: 2.5rem;
+  letter-spacing: 2px;
+  font-weight: 300;
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+.input-group {
+  margin-bottom: 1.5rem;
+  text-align: left;
+  position: relative;
+}
+
+label {
+  display: block;
+  color: #8aaabb;
+  margin-bottom: 0.5rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+}
+
+input {
+  width: 100%;
+  padding: 15px;
+  background: rgba(20, 0, 30, 0.6);
+  border: 1px solid #5a1a4c;
+  border-left: 2px solid var(--neon-purple);
+  color: #fff;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.1rem;
+  outline: none;
+  transition: 0.3s;
+  box-sizing: border-box;
+}
+
+input:focus {
+  background: rgba(40, 0, 50, 0.7);
+  box-shadow: 0 0 20px rgba(255, 0, 255, 0.3);
+}
+
+.btn-connect {
+  width: 100%;
+  background: transparent;
+  color: var(--neon-purple);
+  border: 1px solid var(--neon-purple);
+  padding: 18px 30px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.4s;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  position: relative;
+  overflow: hidden;
+  margin-top: 2rem;
+  clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+}
+
+.btn-connect:hover {
+  background: var(--neon-purple);
+  color: #0a0010;
+  box-shadow: 0 0 50px var(--neon-purple), 0 0 80px var(--neon-pink);
+  text-shadow: none;
+}
+
+/* Page 2: Dashboard */
+.page-dashboard {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  display: none;
+  opacity: 0;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.dashboard-bg-deco {
+  /* Circle HUD Background */
+  position: absolute;
+  top: 50%;
+  left: -200px;
+  width: 800px;
+  height: 800px;
+  border: 2px solid rgba(255, 0, 255, 0.15);
+  border-radius: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.dashboard-bg-deco::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  border: 1px dashed rgba(255, 0, 128, 0.25);
+  border-radius: 50%;
+  animation: spin 20s linear infinite;
+}
+
+@keyframes spin {
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 0, 255, 0.4);
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+  background: linear-gradient(90deg, rgba(255, 0, 128, 0.15), transparent);
+  padding: 1rem;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* Equal width columns */
+  gap: 2rem;
+  height: calc(100% - 100px);
+}
+
+.panel {
+  background: rgba(20, 0, 30, 0.6);
+  border: 1px solid rgba(255, 0, 255, 0.3);
+  backdrop-filter: blur(5px);
+  padding: 1.5rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.panel h3 {
+  margin: 0 0 1rem 0;
+  color: var(--neon-pink);
+  font-size: 1.1rem;
+  border-bottom: 1px solid rgba(255, 0, 255, 0.2);
+  padding-bottom: 0.5rem;
+}
+
+.panel::before,
+.panel::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border: 1px solid var(--neon-purple);
+  transition: 0.3s;
+}
+
+.panel::before {
+  top: -1px;
+  left: -1px;
+  border-right: 0;
+  border-bottom: 0;
+}
+
+.panel::after {
+  bottom: -1px;
+  right: -1px;
+  border-left: 0;
+  border-top: 0;
+}
+
+.panel:hover::before,
+.panel:hover::after {
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+}
+
+/* Page 3: Analysis Page */
+.page-analysis {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  display: none;
+  opacity: 0;
+  padding: 2rem;
+  box-sizing: border-box;
+  flex-direction: column;
+}
+
+.analysis-container {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 2rem;
+  height: 100%;
+}
+
+.prediction-results {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  height: 100%;
+}
+
+.result-card {
+  background: rgba(0, 20, 30, 0.6);
+  border: 1px solid var(--neon-green);
+  padding: 1rem;
+  border-radius: 4px;
+}
+
+.graph-container {
+  flex-grow: 1;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid #333;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  padding: 20px;
+  gap: 20px;
+}
+
+.bar-chart-bar {
+  width: 15%;
+  background: var(--neon-blue);
+  transition: height 1s ease-out;
+  position: relative;
+  opacity: 0.8;
+}
+
+.bar-chart-bar:hover {
+  opacity: 1;
+  box-shadow: 0 0 15px var(--neon-blue);
+}
+
+.bar-label {
+  position: absolute;
+  bottom: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.8rem;
+  color: #aaa;
+}
+
+.bar-value {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  font-weight: bold;
+}
+
+/* Loading/Transition Tunnel */
+.warp-tunnel {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, #fff 0%, var(--neon-purple) 40%, var(--neon-pink) 60%, transparent 80%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  pointer-events: none;
+  opacity: 0;
+  box-shadow: 0 0 100px 50px var(--neon-purple), 0 0 150px 80px var(--neon-pink);
+}
