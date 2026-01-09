@@ -63,3 +63,6 @@ End-to-end medical encryption.
 
 ## Versioning
 Using SemVer 2.0.0.
+
+## Credits
+Ranjith Kumar - Lead Arch.
