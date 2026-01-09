@@ -60,3 +60,6 @@ Internal simulation API.
 
 ## Security
 End-to-end medical encryption.
+
+## Versioning
+Using SemVer 2.0.0.
