@@ -44,3 +44,6 @@ Local server with hot reloading.
 
 ## License
 MIT
+
+---
+*Built with Agentic AI*
