@@ -66,3 +66,6 @@ Using SemVer 2.0.0.
 
 ## Credits
 Ranjith Kumar - Lead Arch.
+
+## Contact
+For medical inquiries.
