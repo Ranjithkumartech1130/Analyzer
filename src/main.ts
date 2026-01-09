@@ -880,3 +880,5 @@ if (backDashBtn) {
 // Code organization: Section 4 - Authentication Logic
 
 // Code organization: Section 5 - Dashboard Navigation
+
+// Code organization: Section 6 - Prediction Engine
