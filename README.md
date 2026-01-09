@@ -69,3 +69,6 @@ Ranjith Kumar - Lead Arch.
 
 ## Contact
 For medical inquiries.
+
+## FAQ
+Common troubleshooting.
