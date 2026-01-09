@@ -878,3 +878,5 @@ if (backDashBtn) {
 // Code organization: Section 3 - DNA Initialization
 
 // Code organization: Section 4 - Authentication Logic
+
+// Code organization: Section 5 - Dashboard Navigation
