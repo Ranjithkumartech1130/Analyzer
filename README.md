@@ -13,3 +13,8 @@ This system provides a Scifi-themed dashboard for medical professionals to visua
 
 ## Overview
 Provides 3D genomic visualization and drug analysis.
+
+## Features
+- DNA Sequence View
+- AI Results
+- Patient Logs
