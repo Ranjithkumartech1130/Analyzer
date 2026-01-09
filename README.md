@@ -57,3 +57,6 @@ Feel free to fork and PR.
 
 ## API Documentation
 Internal simulation API.
+
+## Security
+End-to-end medical encryption.
