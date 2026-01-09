@@ -882,3 +882,5 @@ if (backDashBtn) {
 // Code organization: Section 5 - Dashboard Navigation
 
 // Code organization: Section 6 - Prediction Engine
+
+// Code organization: Section 7 - Compatibility Matching
