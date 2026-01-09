@@ -54,3 +54,6 @@ Feel free to fork and PR.
 ## Project Structure
 - src/: logic
 - public/: assets
+
+## API Documentation
+Internal simulation API.
