@@ -874,3 +874,5 @@ if (backDashBtn) {
 // Code organization: Section 1 - Imports
 
 // Code organization: Section 2 - UI Selectors
+
+// Code organization: Section 3 - DNA Initialization
