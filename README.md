@@ -34,3 +34,6 @@ Evaluates binding affinity and toxicity.
 
 ## UI
 Futuristic magenta/purple aesthetic.
+
+## Dev
+Local server with hot reloading.
