@@ -18,3 +18,7 @@ Provides 3D genomic visualization and drug analysis.
 - DNA Sequence View
 - AI Results
 - Patient Logs
+
+## Setup
+1. npm i
+2. npm run dev
