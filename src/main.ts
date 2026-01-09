@@ -872,3 +872,5 @@ if (backDashBtn) {
 }
 
 // Code organization: Section 1 - Imports
+
+// Code organization: Section 2 - UI Selectors
