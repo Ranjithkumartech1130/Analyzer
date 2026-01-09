@@ -41,3 +41,6 @@ Local server with hot reloading.
 ## Future
 - Real-time DB
 - More proteins
+
+## License
+MIT
