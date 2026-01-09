@@ -31,3 +31,6 @@ Lung Cancer, Breast Cancer, Glioblastoma
 
 ## Analysis
 Evaluates binding affinity and toxicity.
+
+## UI
+Futuristic magenta/purple aesthetic.
