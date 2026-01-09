@@ -37,3 +37,7 @@ Futuristic magenta/purple aesthetic.
 
 ## Dev
 Local server with hot reloading.
+
+## Future
+- Real-time DB
+- More proteins
