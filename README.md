@@ -10,3 +10,6 @@ This system provides a Scifi-themed dashboard for medical professionals to visua
 - **Patient Report Entry**: Secure portal for entering patient diagnosis and condition details.
 - **AI Prediction Model**: Simulates drug binding, stability, and toxicity.
 - **Drug-Disease Compatibility**: Intelligent matching engine with detailed clinical evidence.
+
+## Overview
+Provides 3D genomic visualization and drug analysis.
