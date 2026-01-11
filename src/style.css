@@ -157,6 +157,32 @@ body::before {
   outline: none;
 }
 
+label[data-tooltip] {
+  position: relative;
+  cursor: help;
+}
+
+label[data-tooltip]:after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  background: var(--glass);
+  color: var(--neon-blue);
+  padding: 4px 8px;
+  font-size: 0.6rem;
+  white-space: nowrap;
+  border: 1px solid var(--neon-blue);
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s;
+}
+
+label[data-tooltip]:hover:after {
+  opacity: 1;
+  transform: translateY(-5px);
+}
+
 .report-input:focus {
   border-color: var(--neon-green);
   box-shadow: 0 0 10px rgba(10, 255, 10, 0.2);

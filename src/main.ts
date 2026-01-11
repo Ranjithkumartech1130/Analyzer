@@ -94,13 +94,13 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
           <div class="panel">
               <h3>MOLECULAR PARAMETERS</h3>
               <div class="report-form-container">
-                <label>Target Protein</label>
+                <label data-tooltip="The specific protein the drug targets">Target Protein</label>
                 <input type="text" class="report-input" value="EGFR-Kinase-Mutant" id="ana-target">
-                <label>Ligand ID</label>
+                <label data-tooltip="Unique identifier for the molecule">Ligand ID</label>
                 <input type="text" class="report-input" value="LIG-4920" id="ana-ligand">
-                <label>Molecular Weight (Da)</label>
+                <label data-tooltip="Mass of the molecule in Daltons">Molecular Weight (Da)</label>
                 <input type="number" class="report-input" value="452.3" id="ana-mw">
-                 <label>LogP (Hydrophobicity)</label>
+                 <label data-tooltip="Partition coefficient (lipophilicity)">LogP (Hydrophobicity)</label>
                 <input type="number" class="report-input" value="3.2" id="ana-logp">
                 
                 <button class="btn-submit" id="btn-predict" style="margin-top: 2rem; background: linear-gradient(90deg, #002, var(--neon-purple), #002); color: white;">RUN AI PREDICTION MODEL</button>
