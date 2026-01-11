@@ -34,7 +34,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
         <label>Security Key</label>
         <input type="password" id="access-key" placeholder="••••••••" value="admin123">
       </div>
-      <button class="btn-connect" id="connect-btn">AUTHENTICATE</button>
+      <button class="btn-connect" id="connect-btn" aria-label="Authenticate to system">AUTHENTICATE</button>
     </div>
   </div>
 
@@ -47,36 +47,36 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
         HOSPIT-X <span style="color:var(--neon-blue); font-size: 0.8em; border: 1px solid var(--neon-blue); padding: 2px 5px;">SYS.ADMIN</span>
       </div>
       <div class="user-status" style="font-family: 'Orbitron'; display: flex; align-items: center; gap: 15px;">
-        <div class="system-status" style="font-size: 0.7rem; display: flex; align-items: center; gap: 5px;">
+        <div class="system-status" style="font-size: 0.7rem; display: flex; align-items: center; gap: 5px;" aria-live="polite">
           <span class="status-dot pulse"></span>
           SYS: <span id="sys-status-text" style="color:var(--neon-blue)">SYNCING</span>
         </div>
         LOGIN: <span id="display-id" style="color:var(--neon-green)">---</span>
-        <button id="logout-btn" class="btn-logout">LOGOUT [X]</button>
+        <button id="logout-btn" class="btn-logout" aria-label="Logout from system">LOGOUT [X]</button>
       </div>
     </header>
     
     <div class="grid-container">
       
       <!-- DNA VISUALIZER (Main View) -->
-      <div class="panel center-view" style="padding:0; overflow:hidden; position: relative;">
+      <div class="panel center-view" style="padding:0; overflow:hidden; position: relative;" role="region" aria-label="Genomic Visualizer">
         <h3 style="position: absolute; top: 1rem; left: 1rem; z-index: 2; text-shadow: 0 0 5px black;">GENOMIC SEQUENCE VISUALIZER</h3>
         <div style="position: absolute; top: 1rem; right: 1rem; z-index: 2; display: flex; gap: 5px;">
-           <input type="text" id="dna-search" placeholder="SEARCH SEQ (e.g. ATGC)" style="font-size: 0.7rem; padding: 5px; width: 150px; border-radius: 0; background: var(--glass); border: 1px solid var(--neon-blue);">
-           <button id="btn-search-dna" class="btn-logout" style="margin:0; padding: 5px 10px;">FIND</button>
+           <input type="text" id="dna-search" placeholder="SEARCH SEQ (e.g. ATGC)" style="font-size: 0.7rem; padding: 5px; width: 150px; border-radius: 0; background: var(--glass); border: 1px solid var(--neon-blue);" aria-label="Search genomic sequence">
+           <button id="btn-search-dna" class="btn-logout" style="margin:0; padding: 5px 10px;" aria-label="Execute DNA search">FIND</button>
         </div>
         <div id="dna-canvas-container" style="width: 100%; height: 100%;"></div>
       </div>
       
-      <div class="panel right-hud">
+      <div class="panel right-hud" role="region" aria-label="Patient Report Entry">
         <h3>PATIENT REPORT ENTRY</h3>
          <div class="report-form-container">
-            <input type="text" class="report-input" placeholder="PATIENT NAME" id="p-name">
-            <input type="text" class="report-input" placeholder="AGE / GENDER" id="p-age">
-            <input type="text" class="report-input" placeholder="BLOOD GROUP" id="p-blood">
-            <input type="text" class="report-input" placeholder="DISEASE/CONDITION" id="p-disease">
-            <textarea class="report-input" placeholder="DIAGNOSIS NOTES" rows="3" id="p-diagnosis"></textarea>
-            <button class="btn-submit" id="submit-report">UPLOAD TO BACKEND</button>
+            <input type="text" class="report-input" placeholder="PATIENT NAME" id="p-name" aria-label="Patient Name">
+            <input type="text" class="report-input" placeholder="AGE / GENDER" id="p-age" aria-label="Age and Gender">
+            <input type="text" class="report-input" placeholder="BLOOD GROUP" id="p-blood" aria-label="Blood Group">
+            <input type="text" class="report-input" placeholder="DISEASE/CONDITION" id="p-disease" aria-label="Disease or Condition">
+            <textarea class="report-input" placeholder="DIAGNOSIS NOTES" rows="3" id="p-diagnosis" aria-label="Diagnosis Notes"></textarea>
+            <button class="btn-submit" id="submit-report" aria-label="Upload report to backend">UPLOAD TO BACKEND</button>
          </div>
          <div style="flex-grow: 1; margin-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 0.5rem;">
             <div style="font-size: 0.8rem; color: var(--neon-purple); margin-bottom: 0.5rem;">SYS LOGS:</div>
