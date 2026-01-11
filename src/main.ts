@@ -114,8 +114,8 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
                   <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #555;" id="graph-placeholder">AWAITING INPUT...</div>
               </div>
               <div class="result-card" style="margin-top: 1rem; opacity: 0;" id="text-result">
-                  <div style="color: var(--neon-green); font-size: 1.2rem; margin-bottom: 5px;">SUCCESS: POTENTIAL CANDIDATE FOUND</div>
-                  <div style="font-size: 0.9rem; color: #ccc;">Binding Affinity: <span style="color: white; font-weight: bold;">-9.4 kcal/mol</span> | Toxicity Risk: LOW</div>
+                  <div id="result-status" style="color: var(--neon-green); font-size: 1.2rem; margin-bottom: 5px;">SUCCESS: POTENTIAL CANDIDATE FOUND</div>
+                  <div style="font-size: 0.9rem; color: #ccc;">Binding Affinity: <span id="res-affinity" style="color: white; font-weight: bold;">-9.4 kcal/mol</span> | Toxicity Risk: <span id="res-toxicity">LOW</span></div>
               </div>
           </div>
       </div>
@@ -976,13 +976,13 @@ if (predictBtn) {
     const resultText = document.getElementById('text-result');
     if (resultText) gsap.set(resultText, { opacity: 0, y: 20 });
 
-    // Creating Bars
+    // Creating Bars with Randomized Values
     const data = [
-      { label: 'Binding', value: 85, color: '#00f3ff' },
-      { label: 'Stability', value: 92, color: '#0aff0a' },
-      { label: 'Solubility', value: 64, color: '#ffff00' },
-      { label: 'Toxicity', value: 12, color: '#ff0055' }, // Lower is better usually, but bar height represents magnitude
-      { label: 'Synth-Ease', value: 78, color: '#ff00ff' }
+      { label: 'Binding', value: Math.floor(Math.random() * 30 + 70), color: '#00f3ff' },
+      { label: 'Stability', value: Math.floor(Math.random() * 20 + 80), color: '#0aff0a' },
+      { label: 'Solubility', value: Math.floor(Math.random() * 40 + 50), color: '#ffff00' },
+      { label: 'Toxicity', value: Math.floor(Math.random() * 20 + 5), color: '#ff0055' },
+      { label: 'Synth-Ease', value: Math.floor(Math.random() * 30 + 60), color: '#ff00ff' }
     ];
 
     data.forEach((d, i) => {
@@ -1120,6 +1120,19 @@ if (predictBtn) {
       btn.disabled = false;
 
       if (resultText) {
+        const affinity = (-(Math.random() * 3 + 7)).toFixed(1);
+        const tox = data[3].value > 15 ? "MODERATE" : "LOW";
+        const affinityEl = document.getElementById('res-affinity');
+        const toxEl = document.getElementById('res-toxicity');
+        const statusEl = document.getElementById('result-status');
+
+        if (affinityEl) affinityEl.innerText = affinity + " kcal/mol";
+        if (toxEl) toxEl.innerText = tox;
+        if (statusEl) {
+          statusEl.innerText = data[0].value > 75 ? "SUCCESS: POTENTIAL CANDIDATE FOUND" : "CAUTION: WEAK BINDING DETECTED";
+          statusEl.style.color = data[0].value > 75 ? "var(--neon-green)" : "var(--neon-yellow)";
+        }
+
         gsap.to(resultText, { opacity: 1, y: 0, duration: 0.5 });
       }
     }, 2500);
