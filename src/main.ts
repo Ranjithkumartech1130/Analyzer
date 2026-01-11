@@ -64,6 +64,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
         <div style="position: absolute; top: 1rem; right: 1rem; z-index: 2; display: flex; gap: 5px;">
            <input type="text" id="dna-search" placeholder="SEARCH SEQ (e.g. ATGC)" style="font-size: 0.7rem; padding: 5px; width: 150px; border-radius: 0; background: var(--glass); border: 1px solid var(--neon-blue);" aria-label="Search genomic sequence">
            <button id="btn-search-dna" class="btn-logout" style="margin:0; padding: 5px 10px;" aria-label="Execute DNA search">FIND</button>
+           <button id="btn-reset-dna" class="btn-logout" style="margin:0; padding: 5px 10px;" aria-label="Reset DNA view">RESET</button>
         </div>
         <div id="dna-canvas-container" style="width: 100%; height: 100%;"></div>
       </div>
@@ -1227,6 +1228,17 @@ document.addEventListener('click', (e) => {
       triggerGlitchEffect();
       triggerScanLine();
       setTimeout(() => addLog(`Sequence match found at LOC: ${Math.floor(Math.random() * 10000)}`), 1200);
+    }
+  }
+});
+
+// DNA Reset logic
+document.addEventListener('click', (e) => {
+  const target = e.target as HTMLElement;
+  if (target && target.id === 'btn-reset-dna') {
+    if (dnaCamera) {
+      gsap.to(dnaCamera.position, { x: 0, y: 0, z: 45, duration: 1, ease: "power2.inOut" });
+      addLog("Genomic camera re-centered.");
     }
   }
 });
