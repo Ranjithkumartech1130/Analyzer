@@ -389,11 +389,23 @@ function playTransitionEffects(effectType: 'login' | 'dashboard' | 'analysis' | 
 
 function addLog(msg: string) {
   if (!consoleLogs) return;
+  const now = new Date();
+  const time = now.getHours().toString().padStart(2, '0') + ":" +
+    now.getMinutes().toString().padStart(2, '0') + ":" +
+    now.getSeconds().toString().padStart(2, '0');
+
   const li = document.createElement('li');
-  li.style.marginTop = "3px";
-  li.innerHTML = `<span style="color:var(--neon-green)">></span> ${msg}`;
+  li.style.marginTop = "5px";
+  li.style.borderLeft = "2px solid rgba(10, 255, 10, 0.3)";
+  li.style.paddingLeft = "8px";
+  li.innerHTML = `<span style="color:#555">[${time}]</span> <span style="color:var(--neon-green)">PRC:</span> ${msg}`;
   consoleLogs.appendChild(li);
   consoleLogs.scrollTop = consoleLogs.scrollHeight;
+
+  // Scroller fade out effect for old logs
+  if (consoleLogs.children.length > 50) {
+    consoleLogs.removeChild(consoleLogs.children[0]);
+  }
 }
 
 // Three.js DNA Setup - Modern Cinematic Glass & Neon with Precision Pins
