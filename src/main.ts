@@ -127,8 +127,11 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       
       <!-- Drug-Disease Compatibility Analysis -->
       <div class="analysis-container" style="margin-top: 1.5rem;">
-          <div class="panel" style="grid-column: 1 / -1;">
-              <h3>DRUG-DISEASE COMPATIBILITY ANALYSIS</h3>
+              <div class="panel" style="grid-column: 1 / -1;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <h3 style="margin:0;">DRUG-DISEASE COMPATIBILITY ANALYSIS</h3>
+                    <button id="btn-download-report" class="btn-submit" style="padding: 5px 15px; font-size: 0.7rem; background: var(--glass); border: 1px solid var(--neon-blue); color: var(--neon-blue);">DOWNLOAD PDF REPORT [RAW]</button>
+                  </div>
               <div id="compatibility-result" style="padding: 1.5rem; text-align: center; color: #888;">
                   <div style="font-size: 0.9rem;">Run prediction model to analyze drug compatibility with patient's disease</div>
               </div>
@@ -1225,5 +1228,26 @@ document.addEventListener('click', (e) => {
       triggerScanLine();
       setTimeout(() => addLog(`Sequence match found at LOC: ${Math.floor(Math.random() * 10000)}`), 1200);
     }
+  }
+});
+
+// Download Report Logic
+document.addEventListener('click', (e) => {
+  const target = e.target as HTMLElement;
+  if (target && target.id === 'btn-download-report') {
+    const content = "HOSPIT-X DIAGNOSTIC REPORT\n" +
+      "DATE: " + new Date().toISOString() + "\n" +
+      "DOCTOR: " + (document.getElementById('display-id') as HTMLElement).innerText + "\n" +
+      "PATIENT: " + (document.getElementById('p-name') as HTMLInputElement).value + "\n" +
+      "DISEASE: " + (document.getElementById('p-disease') as HTMLInputElement).value + "\n" +
+      "COMPATIBILITY: " + (document.getElementById('compatibility-result') as HTMLElement).innerText.split('\n')[0] + "\n";
+
+    const blob = new Blob([content], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = "diagnostic-report.txt";
+    a.click();
+    addLog("Diagnostic report exported successfully.");
   }
 });
