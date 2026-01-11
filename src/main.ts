@@ -133,6 +133,25 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 `
 
 // Logic
+const clockEl = document.createElement('div');
+clockEl.style.fontSize = '0.7rem';
+clockEl.style.color = '#888';
+clockEl.style.marginLeft = '15px';
+clockEl.style.borderLeft = '1px solid #333';
+clockEl.style.paddingLeft = '15px';
+clockEl.innerText = "00:00:00";
+
+const updateClock = () => {
+  const now = new Date();
+  clockEl.innerText = now.getHours().toString().padStart(2, '0') + ":" +
+    now.getMinutes().toString().padStart(2, '0') + ":" +
+    now.getSeconds().toString().padStart(2, '0');
+};
+setInterval(updateClock, 1000);
+updateClock();
+
+// We'll append this after the app renders but before logic starts
+// Actually, let's just make it part of the HTML for cleaner injection.
 const connectBtn = document.getElementById('connect-btn');
 const logoutBtn = document.getElementById('logout-btn');
 const pageLogin = document.querySelector('.page-login') as HTMLElement;
@@ -775,7 +794,13 @@ if (connectBtn) {
 
     tl.to(pageDashboard, {
       opacity: 1,
-      duration: 1
+      duration: 1,
+      onComplete: () => {
+        const header = document.querySelector('.dashboard-header .user-status');
+        if (header && !header.contains(clockEl)) {
+          header.appendChild(clockEl);
+        }
+      }
     });
 
     tl.from('.panel', {
