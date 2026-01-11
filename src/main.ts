@@ -171,6 +171,8 @@ const submitBtn = document.getElementById('submit-report');
 const predictBtn = document.getElementById('btn-predict');
 const backDashBtn = document.getElementById('back-dashboard');
 
+const simulateNetworkLatency = (ms: number = 1000) => new Promise(resolve => setTimeout(resolve, ms));
+
 
 // ... (Existing variables)
 let dnaRenderer: THREE.WebGLRenderer, dnaScene: THREE.Scene, dnaCamera: THREE.PerspectiveCamera;
@@ -999,8 +1001,10 @@ function analyzeDrugDiseaseCompatibility(disease: string, targetProtein: string)
 
 // Predict Graph Logic
 if (predictBtn) {
-  predictBtn.addEventListener('click', () => {
+  predictBtn.addEventListener('click', async () => {
     const btn = predictBtn as HTMLButtonElement;
+    btn.innerHTML = "ESTABLISHING UPLINK...";
+    await simulateNetworkLatency(800);
     btn.innerHTML = "RUNNING SIMULATION...";
     btn.disabled = true;
 
