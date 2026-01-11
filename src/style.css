@@ -895,7 +895,6 @@ input:focus {
   }
 }
 
-/* Shatter Effect */
 .shatter-piece {
   position: fixed;
   background: rgba(255, 0, 255, 0.3);
@@ -903,4 +902,21 @@ input:focus {
   opacity: 0;
   pointer-events: none;
   z-index: 9989;
+}
+
+.static-noise {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('https://media.giphy.com/media/oEI9uWUPr9WUM/giphy.gif');
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 10000;
+  display: none;
+}
+
+.static-active {
+  display: block;
 }

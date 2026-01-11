@@ -19,6 +19,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div class="vortex-transition" id="vortex-transition"></div>
   <div class="grid-transition" id="grid-transition"></div>
   <div class="scan-glow" id="scan-glow"></div>
+  <div class="static-noise" id="static-noise"></div>
   
   <div class="page-login">
     <div class="login-card">
@@ -176,6 +177,15 @@ const predictBtn = document.getElementById('btn-predict');
 const backDashBtn = document.getElementById('back-dashboard');
 
 const simulateNetworkLatency = (ms: number = 1000) => new Promise(resolve => setTimeout(resolve, ms));
+
+// Random Static Noise
+setInterval(() => {
+  const noise = document.getElementById('static-noise');
+  if (noise && Math.random() > 0.7) {
+    noise.classList.add('static-active');
+    setTimeout(() => noise.classList.remove('static-active'), 100 + Math.random() * 200);
+  }
+}, 5000);
 
 
 // ... (Existing variables)
