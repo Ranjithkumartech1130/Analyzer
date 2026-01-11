@@ -18,6 +18,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div class="digital-rain" id="digital-rain"></div>
   <div class="vortex-transition" id="vortex-transition"></div>
   <div class="grid-transition" id="grid-transition"></div>
+  <div class="scan-glow" id="scan-glow"></div>
   
   <div class="page-login">
     <div class="login-card">
@@ -862,6 +863,7 @@ if (submitBtn) {
     }
 
     addLog("Processing Patient Data...");
+    gsap.fromTo('#scan-glow', { opacity: 0 }, { opacity: 1, duration: 0.3, yoyo: true, repeat: 3 });
 
     // Trigger transition effects
     playTransitionEffects('dashboard');
