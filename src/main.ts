@@ -827,6 +827,9 @@ if (connectBtn) {
 // Logout
 if (logoutBtn) {
   logoutBtn.addEventListener('click', () => {
+    addLog("De-authenticating session...");
+    triggerGlitchEffect();
+
     const tl = gsap.timeline();
 
     tl.to(pageDashboard, {
