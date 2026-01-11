@@ -45,7 +45,11 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       <div class="logo" style="font-size: 1.5rem; letter-spacing: 2px;">
         HOSPIT-X <span style="color:var(--neon-blue); font-size: 0.8em; border: 1px solid var(--neon-blue); padding: 2px 5px;">SYS.ADMIN</span>
       </div>
-      <div class="user-status" style="font-family: 'Orbitron'; display: flex; align-items: center;">
+      <div class="user-status" style="font-family: 'Orbitron'; display: flex; align-items: center; gap: 15px;">
+        <div class="system-status" style="font-size: 0.7rem; display: flex; align-items: center; gap: 5px;">
+          <span class="status-dot pulse"></span>
+          SYS: <span id="sys-status-text" style="color:var(--neon-blue)">SYNCING</span>
+        </div>
         LOGIN: <span id="display-id" style="color:var(--neon-green)">---</span>
         <button id="logout-btn" class="btn-logout">LOGOUT [X]</button>
       </div>
