@@ -668,6 +668,11 @@ function initDNA() {
     dnaGroup.rotation.y += 0.002;
     pSys.rotation.y -= 0.001;
 
+    // Pulse backbone
+    const time = Date.now() * 0.001;
+    backboneMaterial.emissive = new THREE.Color(0x0088ff);
+    backboneMaterial.emissiveIntensity = 0.2 + Math.sin(time * 2) * 0.1;
+
     dnaRenderer.render(dnaScene, dnaCamera);
     labelRenderer.render(dnaScene, dnaCamera);
   };
