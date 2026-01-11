@@ -93,6 +93,17 @@ body::before {
   z-index: 0;
   transform-origin: center;
   opacity: 0.3;
+  animation: bg-move 60s infinite linear;
+}
+
+@keyframes bg-move {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 1000px 1000px;
+  }
 }
 
 .glow-overlay {
