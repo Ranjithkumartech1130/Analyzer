@@ -10,12 +10,14 @@
   --glass: rgba(30, 0, 40, 0.7);
   --border-color: rgba(255, 0, 255, 0.4);
   --accent-cyan: #00d4ff;
+  --glow-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+  --glass-border: rgba(255, 255, 255, 0.1);
 }
 
 body {
   margin: 0;
   background: var(--bg-color);
-  background-image: url('/main-bg.jpg');
+
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -167,21 +169,37 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 5, 15, 0.5);
+  background: rgba(4, 21, 32, 0.65);
   z-index: -1;
 }
 
 .login-card {
-  background: rgba(20, 0, 30, 0.85);
+  background: rgba(6, 20, 32, 0.85);
+  color: #dfe7ed;
   backdrop-filter: blur(20px);
   padding: 3rem 4rem;
-  border: 1px solid rgba(255, 0, 255, 0.5);
-  box-shadow: 0 0 80px rgba(255, 0, 128, 0.3), inset 0 0 30px rgba(255, 0, 255, 0.1);
+  border: 1px solid #3f6f94;
+  box-shadow: 0 25px 80px rgba(4, 21, 32, 0.55), inset 0 0 30px rgba(99, 163, 191, 0.2);
   text-align: center;
   position: relative;
   overflow: hidden;
   clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
   width: 450px;
+  animation: card-shimmer 5s infinite linear;
+}
+
+@keyframes card-shimmer {
+  0% {
+    box-shadow: 0 25px 80px rgba(4, 21, 32, 0.55), inset 0 0 30px rgba(99, 163, 191, 0.2);
+  }
+
+  50% {
+    box-shadow: 0 25px 90px rgba(0, 212, 255, 0.2), inset 0 0 40px rgba(0, 212, 255, 0.1);
+  }
+
+  100% {
+    box-shadow: 0 25px 80px rgba(4, 21, 32, 0.55), inset 0 0 30px rgba(99, 163, 191, 0.2);
+  }
 }
 
 /* Scifi HUD corners */
@@ -192,8 +210,8 @@ body::before {
   left: 0;
   width: 20px;
   height: 20px;
-  border-top: 2px solid var(--neon-purple);
-  border-left: 2px solid var(--neon-purple);
+  border-top: 2px solid #3f6f94;
+  border-left: 2px solid #3f6f94;
 }
 
 .login-card-corner-br {
@@ -202,24 +220,24 @@ body::before {
   right: 0;
   width: 20px;
   height: 20px;
-  border-bottom: 2px solid var(--neon-purple);
-  border-right: 2px solid var(--neon-purple);
+  border-bottom: 2px solid #3f6f94;
+  border-right: 2px solid #3f6f94;
 }
 
-h1 {
+.page-login h1 {
   font-family: 'Orbitron', sans-serif;
-  color: white;
+  color: #f1e6c7;
   margin-bottom: 0.5rem;
   text-transform: uppercase;
   letter-spacing: 6px;
-  text-shadow: 0 0 20px var(--neon-purple), 0 0 40px var(--neon-pink);
+  text-shadow: 0 8px 30px rgba(241, 230, 199, 0.35);
   font-size: 2rem;
   font-weight: 700;
 }
 
-h2 {
+.page-login h2 {
   font-family: 'Rajdhani', sans-serif;
-  color: var(--neon-pink);
+  color: #8caebb;
   margin-top: 0;
   margin-bottom: 2.5rem;
   letter-spacing: 2px;
@@ -287,6 +305,41 @@ input:focus {
   color: #0a0010;
   box-shadow: 0 0 50px var(--neon-purple), 0 0 80px var(--neon-pink);
   text-shadow: none;
+}
+
+/* Doctor login high-contrast overrides */
+.page-login label {
+  color: #8caebb;
+}
+
+.page-login input {
+  background: #0b2332;
+  border: 1px solid #3f6f94;
+  border-left: 2px solid #8caebb;
+  color: #e6edf2;
+}
+
+.page-login input:focus {
+  background: #123346;
+  border-color: #8caebb;
+  box-shadow: 0 0 0 3px rgba(142, 184, 192, 0.25);
+}
+
+.page-login input::placeholder {
+  color: #6f8da0;
+}
+
+.page-login .btn-connect {
+  background: linear-gradient(90deg, #3f6f94, #1f4c5f);
+  color: #e6edf2;
+  border: 1px solid #8caebb;
+  box-shadow: 0 10px 25px rgba(4, 21, 32, 0.5);
+}
+
+.page-login .btn-connect:hover {
+  background: linear-gradient(90deg, #8caebb, #bedcca);
+  color: #0b2332;
+  box-shadow: 0 12px 30px rgba(142, 184, 192, 0.5);
 }
 
 /* Page 2: Dashboard */
@@ -493,6 +546,7 @@ input:focus {
   opacity: 0;
   box-shadow: 0 0 100px 50px var(--neon-purple), 0 0 150px 80px var(--neon-pink);
 }
+
 /* UI Theme: Core Variables */
 
 /* UI Theme: Layout Architecture */
@@ -502,3 +556,268 @@ input:focus {
 /* UI Theme: Responsive Overrides */
 
 /* UI Theme: Animation Keyframes */
+
+/* ========== TRANSITION EFFECTS ========== */
+
+/* Particle Burst Effect */
+.particle-burst {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Glitch Effect */
+.glitch-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(0deg,
+      rgba(255, 0, 255, 0.1) 0px,
+      rgba(255, 0, 255, 0.1) 2px,
+      transparent 2px,
+      transparent 4px);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9998;
+  animation: glitch-scan 0.1s infinite;
+}
+
+@keyframes glitch-scan {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+/* Morphing Geometric Shapes */
+.morph-shape {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
+  border: 2px solid var(--neon-purple);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9997;
+}
+
+/* Color Wave Animation */
+.color-wave {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(255, 0, 255, 0.3) 25%,
+      rgba(0, 212, 255, 0.3) 50%,
+      rgba(255, 0, 128, 0.3) 75%,
+      transparent 100%);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9996;
+}
+
+/* Scan Line Effect */
+.scan-line {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--neon-blue), transparent);
+  box-shadow: 0 0 20px var(--neon-blue);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9995;
+}
+
+/* Grid Transition Effect */
+.grid-transition {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(rgba(255, 0, 255, 0.2) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 0, 255, 0.2) 1px, transparent 1px);
+  background-size: 50px 50px;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9994;
+}
+
+/* Hexagon Transition Pattern */
+.hex-transition {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  background: radial-gradient(circle, rgba(255, 0, 255, 0.8), rgba(0, 212, 255, 0.6), transparent);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9993;
+}
+
+/* Ripple Effect */
+.ripple-effect {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  border: 2px solid var(--neon-purple);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9992;
+}
+
+/* Digital Rain Effect */
+.digital-rain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9991;
+  overflow: hidden;
+}
+
+.rain-column {
+  position: absolute;
+  top: -100%;
+  width: 2px;
+  height: 100px;
+  background: linear-gradient(to bottom, transparent, var(--neon-green), transparent);
+  animation: rain-fall 1s linear;
+}
+
+@keyframes rain-fall {
+  to {
+    transform: translateY(100vh);
+  }
+}
+
+/* Vortex Transition */
+.vortex-transition {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(0deg);
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: var(--neon-purple);
+  border-right-color: var(--neon-blue);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9990;
+}
+
+/* Page Slide Animations */
+@keyframes slideOutLeft {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeZoomOut {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  to {
+    transform: scale(1.2);
+    opacity: 0;
+    filter: blur(10px);
+  }
+}
+
+@keyframes fadeZoomIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+    filter: blur(10px);
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+/* Shatter Effect */
+.shatter-piece {
+  position: fixed;
+  background: rgba(255, 0, 255, 0.3);
+  border: 1px solid var(--neon-purple);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9989;
+}

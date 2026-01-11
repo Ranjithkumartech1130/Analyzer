@@ -1,12 +1,23 @@
 import './style.css'
 import gsap from 'gsap'
 import * as THREE from 'three'
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import { CSS2DRenderer, CSS2DObject } from 'three/examples/jsm/renderers/CSS2DRenderer';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div class="hex-bg"></div>
   <div class="glow-overlay"></div>
+  
+  <!-- Transition Effects -->
+  <div class="glitch-overlay" id="glitch-overlay"></div>
+  <div class="scan-line" id="scan-line"></div>
+  <div class="color-wave" id="color-wave"></div>
+  <div class="morph-shape" id="morph-shape"></div>
+  <div class="hex-transition" id="hex-transition"></div>
+  <div class="ripple-effect" id="ripple-effect"></div>
+  <div class="digital-rain" id="digital-rain"></div>
+  <div class="vortex-transition" id="vortex-transition"></div>
+  <div class="grid-transition" id="grid-transition"></div>
   
   <div class="page-login">
     <div class="login-card">
@@ -132,9 +143,245 @@ const submitBtn = document.getElementById('submit-report');
 const predictBtn = document.getElementById('btn-predict');
 const backDashBtn = document.getElementById('back-dashboard');
 
+
 // ... (Existing variables)
 let dnaRenderer: THREE.WebGLRenderer, dnaScene: THREE.Scene, dnaCamera: THREE.PerspectiveCamera;
 let labelRenderer: CSS2DRenderer;
+
+// ========== TRANSITION EFFECT FUNCTIONS ========== 
+
+// Particle Burst Effect
+function createParticleBurst(x: number, y: number, count: number = 30) {
+  const colors = ['#ff00ff', '#00d4ff', '#ff0080', '#0aff0a'];
+
+  for (let i = 0; i < count; i++) {
+    const particle = document.createElement('div');
+    particle.className = 'particle-burst';
+    particle.style.left = x + 'px';
+    particle.style.top = y + 'px';
+    particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+    document.body.appendChild(particle);
+
+    const angle = (Math.PI * 2 * i) / count;
+    const velocity = 100 + Math.random() * 200;
+    const tx = Math.cos(angle) * velocity;
+    const ty = Math.sin(angle) * velocity;
+
+    gsap.to(particle, {
+      x: tx,
+      y: ty,
+      opacity: 0,
+      scale: Math.random() * 2,
+      duration: 0.8 + Math.random() * 0.4,
+      ease: 'power2.out',
+      onComplete: () => particle.remove()
+    });
+  }
+}
+
+// Glitch Overlay Effect
+function triggerGlitchEffect() {
+  const glitch = document.getElementById('glitch-overlay');
+  if (!glitch) return;
+
+  const tl = gsap.timeline();
+  tl.to(glitch, { opacity: 0.8, duration: 0.05 });
+  tl.to(glitch, { x: -5, duration: 0.05 });
+  tl.to(glitch, { x: 5, duration: 0.05 });
+  tl.to(glitch, { x: -3, duration: 0.05 });
+  tl.to(glitch, { x: 0, opacity: 0, duration: 0.1 });
+}
+
+// Scan Line Effect
+function triggerScanLine() {
+  const scanLine = document.getElementById('scan-line');
+  if (!scanLine) return;
+
+  gsap.fromTo(scanLine,
+    { top: '0%', opacity: 1 },
+    {
+      top: '100%',
+      opacity: 0,
+      duration: 0.6,
+      ease: 'power2.inOut'
+    }
+  );
+}
+
+// Color Wave Effect
+function triggerColorWave() {
+  const wave = document.getElementById('color-wave');
+  if (!wave) return;
+
+  gsap.fromTo(wave,
+    { left: '-100%', opacity: 0.7 },
+    {
+      left: '100%',
+      opacity: 0,
+      duration: 1.2,
+      ease: 'power2.inOut'
+    }
+  );
+}
+
+// Morphing Shape Effect
+function triggerMorphingShape() {
+  const shape = document.getElementById('morph-shape');
+  if (!shape) return;
+
+  const tl = gsap.timeline();
+  tl.to(shape, {
+    opacity: 1,
+    width: 200,
+    height: 200,
+    rotation: 45,
+    duration: 0.4,
+    ease: 'power2.out'
+  });
+  tl.to(shape, {
+    width: 300,
+    height: 100,
+    rotation: 90,
+    borderRadius: '50%',
+    duration: 0.3
+  });
+  tl.to(shape, {
+    opacity: 0,
+    scale: 2,
+    duration: 0.3
+  });
+  tl.set(shape, { width: 100, height: 100, rotation: 0, scale: 1, borderRadius: 0 });
+}
+
+// Hexagon Transition
+function triggerHexagonTransition() {
+  const hex = document.getElementById('hex-transition');
+  if (!hex) return;
+
+  gsap.fromTo(hex,
+    { width: 0, height: 0, opacity: 1 },
+    {
+      width: '200vw',
+      height: '200vw',
+      opacity: 0,
+      duration: 1,
+      ease: 'power2.out'
+    }
+  );
+}
+
+// Ripple Effect
+function triggerRippleEffect() {
+  const ripple = document.getElementById('ripple-effect');
+  if (!ripple) return;
+
+  const tl = gsap.timeline();
+  for (let i = 0; i < 3; i++) {
+    tl.fromTo(ripple,
+      { width: 50, height: 50, opacity: 0.8 },
+      {
+        width: 800,
+        height: 800,
+        opacity: 0,
+        duration: 1,
+        ease: 'power2.out'
+      },
+      i * 0.2
+    );
+  }
+}
+
+// Digital Rain Effect
+function triggerDigitalRain(duration: number = 1) {
+  const rain = document.getElementById('digital-rain');
+  if (!rain) return;
+
+  rain.innerHTML = '';
+  const columnCount = 30;
+
+  gsap.to(rain, { opacity: 1, duration: 0.1 });
+
+  for (let i = 0; i < columnCount; i++) {
+    const column = document.createElement('div');
+    column.className = 'rain-column';
+    column.style.left = (Math.random() * 100) + '%';
+    column.style.animationDelay = (Math.random() * 0.5) + 's';
+    rain.appendChild(column);
+  }
+
+  setTimeout(() => {
+    gsap.to(rain, {
+      opacity: 0,
+      duration: 0.3,
+      onComplete: () => { rain.innerHTML = ''; }
+    });
+  }, duration * 1000);
+}
+
+// Vortex Transition
+function triggerVortexTransition() {
+  const vortex = document.getElementById('vortex-transition');
+  if (!vortex) return;
+
+  gsap.fromTo(vortex,
+    { width: 0, height: 0, opacity: 1, rotation: 0 },
+    {
+      width: 800,
+      height: 800,
+      opacity: 0,
+      rotation: 720,
+      duration: 1.2,
+      ease: 'power2.out'
+    }
+  );
+}
+
+// Grid Transition
+function triggerGridTransition(duration: number = 0.8) {
+  const grid = document.getElementById('grid-transition');
+  if (!grid) return;
+
+  const tl = gsap.timeline();
+  tl.to(grid, { opacity: 0.5, duration: 0.2 });
+  tl.to(grid, { opacity: 0, duration: duration - 0.2 });
+}
+
+// Combined Transition Effect
+function playTransitionEffects(effectType: 'login' | 'dashboard' | 'analysis' | 'back') {
+  switch (effectType) {
+    case 'login':
+      // Login to Dashboard: Vortex + Scan + Particles
+      createParticleBurst(window.innerWidth / 2, window.innerHeight / 2, 40);
+      triggerVortexTransition();
+      setTimeout(() => triggerScanLine(), 300);
+      setTimeout(() => triggerGlitchEffect(), 600);
+      break;
+
+    case 'dashboard':
+      // Dashboard to Analysis: Hexagon + Color Wave + Digital Rain
+      triggerHexagonTransition();
+      setTimeout(() => triggerColorWave(), 200);
+      setTimeout(() => triggerDigitalRain(0.8), 400);
+      setTimeout(() => triggerGlitchEffect(), 800);
+      break;
+
+    case 'analysis':
+      // Analysis Page Effects: Morphing + Ripple + Grid
+      triggerMorphingShape();
+      setTimeout(() => triggerRippleEffect(), 200);
+      setTimeout(() => triggerGridTransition(), 400);
+      break;
+
+    case 'back':
+      // Back Navigation: Color Wave + Scan + Particles
+      triggerColorWave();
+      setTimeout(() => triggerScanLine(), 300);
+      setTimeout(() => createParticleBurst(window.innerWidth / 2, window.innerHeight / 2, 30), 500);
+      setTimeout(() => triggerGlitchEffect(), 700);
+      break;
+  }
+}
+
 
 function addLog(msg: string) {
   if (!consoleLogs) return;
@@ -427,6 +674,9 @@ if (connectBtn) {
   connectBtn.addEventListener('click', () => {
     const docId = doctorIdInput.value || "UNKNOWN";
 
+    // Trigger transition effects
+    playTransitionEffects('login');
+
     // Sequence
     const tl = gsap.timeline();
 
@@ -562,6 +812,9 @@ if (submitBtn) {
     }
 
     addLog("Processing Patient Data...");
+
+    // Trigger transition effects
+    playTransitionEffects('dashboard');
 
     // Transition to Analysis
     const tl = gsap.timeline();
@@ -838,6 +1091,9 @@ if (predictBtn) {
       }
     }, 2000);
 
+    // Trigger analysis effects
+    setTimeout(() => playTransitionEffects('analysis'), 1000);
+
     setTimeout(() => {
       btn.innerHTML = "RUN AI PREDICTION MODEL";
       btn.disabled = false;
@@ -852,6 +1108,9 @@ if (predictBtn) {
 // Back to Dashboard
 if (backDashBtn) {
   backDashBtn.addEventListener('click', () => {
+    // Trigger transition effects
+    playTransitionEffects('back');
+
     const tl = gsap.timeline();
 
     tl.to('.page-analysis', {
