@@ -60,6 +60,10 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       <!-- DNA VISUALIZER (Main View) -->
       <div class="panel center-view" style="padding:0; overflow:hidden; position: relative;">
         <h3 style="position: absolute; top: 1rem; left: 1rem; z-index: 2; text-shadow: 0 0 5px black;">GENOMIC SEQUENCE VISUALIZER</h3>
+        <div style="position: absolute; top: 1rem; right: 1rem; z-index: 2; display: flex; gap: 5px;">
+           <input type="text" id="dna-search" placeholder="SEARCH SEQ (e.g. ATGC)" style="font-size: 0.7rem; padding: 5px; width: 150px; border-radius: 0; background: var(--glass); border: 1px solid var(--neon-blue);">
+           <button id="btn-search-dna" class="btn-logout" style="margin:0; padding: 5px 10px;">FIND</button>
+        </div>
         <div id="dna-canvas-container" style="width: 100%; height: 100%;"></div>
       </div>
       
@@ -1201,16 +1205,16 @@ if (backDashBtn) {
   });
 }
 
-// Code organization: Section 1 - Imports
-
-// Code organization: Section 2 - UI Selectors
-
-// Code organization: Section 3 - DNA Initialization
-
-// Code organization: Section 4 - Authentication Logic
-
-// Code organization: Section 5 - Dashboard Navigation
-
-// Code organization: Section 6 - Prediction Engine
-
-// Code organization: Section 7 - Compatibility Matching
+// DNA Search logic
+document.addEventListener('click', (e) => {
+  const target = e.target as HTMLElement;
+  if (target && target.id === 'btn-search-dna') {
+    const query = (document.getElementById('dna-search') as HTMLInputElement).value;
+    if (query) {
+      addLog(`Searching genomic sequence: ${query.toUpperCase()}...`);
+      triggerGlitchEffect();
+      triggerScanLine();
+      setTimeout(() => addLog(`Sequence match found at LOC: ${Math.floor(Math.random() * 10000)}`), 1200);
+    }
+  }
+});
