@@ -1008,6 +1008,18 @@ if (predictBtn) {
       setTimeout(() => {
         bar.style.height = d.value + '%';
         gsap.to(val, { opacity: 1, delay: 1 });
+
+        // Counter animation
+        const obj = { v: 0 };
+        gsap.to(obj, {
+          v: d.value,
+          duration: 1,
+          ease: "power2.out",
+          delay: 0.5,
+          onUpdate: () => {
+            val.innerText = Math.floor(obj.v) + '%';
+          }
+        });
       }, i * 200 + 500);
     });
 
