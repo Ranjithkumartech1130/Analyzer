@@ -5,3 +5,4 @@ feat: enhance data synchronization logging
 chore: update internal medical terminology mappings
 docs: add patient genome CSV format specification
 docs: document API endpoint for genomic analysis
+docs: document API endpoint for compatibility engine
