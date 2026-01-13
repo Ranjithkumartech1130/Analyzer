@@ -25,3 +25,4 @@ feat: implement high-precision medical knowledge matching
 docs: document safety assessment score calculation
 chore: reduce feature dimensionality for faster inference
 feat: add detailed mechanism of action for lead compounds
+docs: finalize v2.0 system operation manual
