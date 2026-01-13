@@ -10,3 +10,4 @@ feat: add validation for molecular input parameters
 chore: refine oncology department drug lists
 feat: add cardiology department compatibility support
 feat: add endocrinology department drug mappings
+feat: add neurology department disease profiles
