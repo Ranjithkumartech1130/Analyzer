@@ -15,3 +15,4 @@ docs: update security protocol for patient data handling
 chore: optimize memory usage for large gene datasets
 feat: implement deterministic hash for drug ranking
 docs: add clinical evidence for EGFR inhibitors
+docs: add clinical evidence for PI3K inhibitors
