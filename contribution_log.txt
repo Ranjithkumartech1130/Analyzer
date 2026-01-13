@@ -18,3 +18,4 @@ docs: add clinical evidence for EGFR inhibitors
 docs: add clinical evidence for PI3K inhibitors
 docs: add clinical evidence for VEGF-A inhibitors
 feat: add support for rare mutation analysis
+chore: standardize result formatting for clinical reports
