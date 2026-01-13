@@ -22,3 +22,4 @@ chore: standardize result formatting for clinical reports
 docs: add installation guide for backend services
 docs: add troubleshooting guide for model loading
 feat: implement high-precision medical knowledge matching
+docs: document safety assessment score calculation
