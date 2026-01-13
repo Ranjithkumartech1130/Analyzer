@@ -1,2 +1,3 @@
 docs: add architectural overview of drug-genome pipeline
 docs: document data preprocessing for CCLE datasets
+docs: add details on XGBoost model hyperparameters
