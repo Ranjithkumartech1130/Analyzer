@@ -8,3 +8,4 @@ docs: document API endpoint for genomic analysis
 docs: document API endpoint for compatibility engine
 feat: add validation for molecular input parameters
 chore: refine oncology department drug lists
+feat: add cardiology department compatibility support
