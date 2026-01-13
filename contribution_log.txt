@@ -11,3 +11,4 @@ chore: refine oncology department drug lists
 feat: add cardiology department compatibility support
 feat: add endocrinology department drug mappings
 feat: add neurology department disease profiles
+docs: update security protocol for patient data handling
